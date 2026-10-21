@@ -1,1 +1,267 @@
-from IPython.display import HTML, displaydisplay(HTML("""<!DOCTYPE html><html><head><title>Musafir Cafe</title><style>body {    font-family: Arial, sans-serif;    background: #f4eee5;    text-align: center;    padding: 25px;}.cafe {    max-width: 420px;    margin: auto;    padding: 25px;    background: white;    border-radius: 18px;    box-shadow: 0 5px 20px #ccc;}h1 { color: #6b3825; }.item {    padding: 12px;    margin: 10px 0;    background: #faf3eb;    border-radius: 10px;}button {    background: #6b3825;    color: white;    border: none;    padding: 12px 25px;    border-radius: 8px;    cursor: pointer;}select {    padding: 10px;    margin: 12px;}#result { color: green; font-weight: bold; }</style></head><body><div class="cafe"><h1>Musafir Cafe</h1><p>Welcome to Mussoorie ?</p><hr><div class="item">1. Hot Coffee</div><div class="item">2. Cold Coffee</div><div class="item">3. Nestle Special Coffee</div><div class="item">4. Chandra Special Chai</div><div class="item">5. Special Black Tea</div><h3>Select Your Order</h3><select id="drink"><option value="Hot Coffee">Hot Coffee</option><option value="Cold Coffee">Cold Coffee</option><option value="Nestle Special Coffee">Nestle Special Coffee</option><option value="Chandra Special Chai">Chandra Special Chai</option><option value="Special Black Tea">Special Black Tea</option><option value="All Items">All Items</option></select><br><button onclick="order()">Order Now</button><p id="result"></p></div><script>function order() {    let item = document.getElementById("drink").value;    document.getElementById("result").innerText =        "Your order is confirmed: " + item;}</script></body></html>"""))
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Musafir Cafe | Order Online</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 24px 14px;
+      font-family: Arial, sans-serif;
+      background: #f4eee5;
+      color: #33251e;
+    }
+
+    .cafe {
+      max-width: 480px;
+      margin: auto;
+      padding: 25px;
+      background: white;
+      border-radius: 20px;
+      box-shadow: 0 8px 30px #00000012;
+    }
+
+    header {
+      text-align: center;
+      padding-bottom: 15px;
+    }
+
+    .cup {
+      font-size: 48px;
+    }
+
+    h1 {
+      color: #6b3825;
+      margin: 8px 0;
+    }
+
+    .subtitle {
+      color: #76675e;
+    }
+
+    h2 {
+      color: #6b3825;
+      font-size: 20px;
+      margin-top: 24px;
+    }
+
+    .menu-item {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 13px;
+      margin: 9px 0;
+      background: #faf3eb;
+      border-radius: 10px;
+    }
+
+    label {
+      display: block;
+      font-weight: bold;
+      margin: 15px 0 7px;
+    }
+
+    input, select, textarea {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #d8c8bb;
+      border-radius: 9px;
+      font: inherit;
+      background: white;
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 80px;
+    }
+
+    button {
+      width: 100%;
+      margin-top: 22px;
+      padding: 14px;
+      border: none;
+      border-radius: 10px;
+      background: #247746;
+      color: white;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #195e35;
+    }
+
+    .note {
+      font-size: 13px;
+      line-height: 1.6;
+      color: #76675e;
+      text-align: center;
+      margin-top: 16px;
+    }
+
+    #status {
+      margin-top: 14px;
+      line-height: 1.5;
+      overflow-wrap: anywhere;
+    }
+  </style>
+</head>
+
+<body>
+  <main class="cafe">
+    <header>
+      <div class="cup">☕</div>
+      <h1>Musafir Cafe</h1>
+      <p class="subtitle">Welcome to Mussoorie</p>
+      <p>Fresh sips, happy trips!</p>
+    </header>
+
+    <h2>Our Menu</h2>
+
+    <div class="menu-item">
+      <span>Hot Coffee</span><span>☕</span>
+    </div>
+    <div class="menu-item">
+      <span>Cold Coffee</span><span>🧋</span>
+    </div>
+    <div class="menu-item">
+      <span>Nestle Special Coffee</span><span>☕</span>
+    </div>
+    <div class="menu-item">
+      <span>Chandra Special Chai</span><span>🍵</span>
+    </div>
+    <div class="menu-item">
+      <span>Musafir Special Black Tea</span><span>🍵</span>
+    </div>
+
+    <h2>Place Your Order</h2>
+
+    <form id="orderForm">
+      <label for="customer">Your Name</label>
+      <input id="customer" type="text"
+        maxlength="80" autocomplete="name"
+        placeholder="Enter your full name" required>
+
+      <label for="phone">Your Mobile Number</label>
+      <input id="phone" type="tel"
+        inputmode="numeric" maxlength="10"
+        pattern="[6-9][0-9]{9}"
+        autocomplete="tel-national"
+        placeholder="10-digit mobile number" required>
+
+      <label for="item">Select Your Item</label>
+      <select id="item" required>
+        <option value="Hot Coffee">Hot Coffee</option>
+        <option value="Cold Coffee">Cold Coffee</option>
+        <option value="Nestle Special Coffee">
+          Nestle Special Coffee
+        </option>
+        <option value="Chandra Special Chai">
+          Chandra Special Chai
+        </option>
+        <option value="Musafir Special Black Tea">
+          Musafir Special Black Tea
+        </option>
+      </select>
+
+      <label for="quantity">Quantity</label>
+      <input id="quantity" type="number"
+        min="1" max="50" step="1" value="1" required>
+
+      <label for="address">Delivery Address</label>
+      <textarea id="address" maxlength="300"
+        autocomplete="street-address"
+        placeholder="Enter your complete address"
+        required></textarea>
+
+      <button type="submit">
+        Order on WhatsApp
+      </button>
+
+      <p id="status" role="status"></p>
+    </form>
+
+    <p class="note">
+      Your order will open in WhatsApp for confirmation.
+      Please check the details and press Send.
+    </p>
+  </main>
+
+  <script>
+    // IMPORTANT: Replace this with your own WhatsApp number.
+    // India country code is 91. Do not add + or spaces.
+    const CAFE_WHATSAPP_NUMBER = "919737503905";
+
+    document.getElementById("orderForm")
+      .addEventListener("submit", function(event) {
+        event.preventDefault();
+
+        const name =
+          document.getElementById("customer").value.trim();
+        const phone =
+          document.getElementById("phone").value.trim();
+        const item =
+          document.getElementById("item").value;
+        const quantity =
+          Number(document.getElementById("quantity").value);
+        const address =
+          document.getElementById("address").value.trim();
+        const status =
+          document.getElementById("status");
+
+        if (!/^[6-9][0-9]{9}$/.test(phone)) {
+          status.textContent =
+            "Please enter a valid 10-digit Indian mobile number.";
+          return;
+        }
+
+        if (!Number.isInteger(quantity) ||
+            quantity < 1 || quantity > 50) {
+          status.textContent =
+            "Please choose a quantity from 1 to 50.";
+          return;
+        }
+
+        if (!name || !address) {
+          status.textContent =
+            "Please fill in all required details.";
+          return;
+        }
+
+        if (!/^91[6-9][0-9]{9}$/.test(CAFE_WHATSAPP_NUMBER)) {
+          status.textContent =
+            "Cafe owner: please add your correct WhatsApp number in the code.";
+          return;
+        }
+
+        const message =
+`NEW ORDER - MUSAFIR CAFE
+
+Customer: ${name}
+Customer Mobile: ${phone}
+Item: ${item}
+Quantity: ${quantity}
+Delivery Address: ${address}
+
+Please confirm this order.`;
+
+        const whatsappURL =
+          "https://wa.me/" + CAFE_WHATSAPP_NUMBER +
+          "?text=" + encodeURIComponent(message);
+
+        status.textContent =
+          "Opening WhatsApp. Please review and send your order.";
+
+        window.open(whatsappURL, "_blank");
+      });
+  </script>
+</body>
+</html>
